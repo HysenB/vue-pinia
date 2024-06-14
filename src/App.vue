@@ -17,6 +17,9 @@
       <button @click="filter = 'favs'">Fav Tasks</button>
     </nav>
 
+    <!-- loading -->
+    <div class="loading" v-if="taskStore.isLoading">Loading tasks...</div>
+
     <!-- task list -->
     <div class="task-list" v-if="filter === 'all'">
       <p>You have {{ taskStore.totalCount }} tasks left to do</p>
@@ -42,6 +45,8 @@ import TaskForm from './components/TaskForm.vue'
 import { useTaskStore } from './stores/TaskStore';
 
 const taskStore = useTaskStore();
+
+taskStore.getTasks();
 
 const filter = ref('all');
 </script>
